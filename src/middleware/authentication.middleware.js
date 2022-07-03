@@ -6,16 +6,16 @@ exports.authenticate = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(" ")[1];
 
-  if (!token) {
-    throw new ErrorHandler(403, "Sizda token mavjud emas!");
-  }
-
   try {
+    if (!token) {
+      throw new ErrorHandler(403, "Sizda token mavjud emas!");
+    }
+
     const decoded = jwt.verify(token, config.JWT_SECRET);
     req.userId = decoded.id;
     req.userRole = decoded.role;
     next();
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };

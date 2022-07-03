@@ -40,8 +40,6 @@ exports.login = async (req, res, next) => {
       throw new ErrorHandler(404, "Bu raqamli foydalanuvchi mavjud emas.");
     }
 
-    console.log(user);
-
     if (user.password !== req.body.password) {
       throw new ErrorHandler(404, "Parol xato!");
     }

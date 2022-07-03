@@ -5,7 +5,7 @@ exports.permit = (...permittedRoles) => {
     if (permittedRoles && !permittedRoles.includes(req.userRole)) {
       throw new ErrorHandler(
         401,
-        "Bu joyga kirishga faqat adminda ruhsat bor."
+        `Bu joyga kirishga faqat ${permittedRoles}da ruhsat bor.`
       );
     }
     next();

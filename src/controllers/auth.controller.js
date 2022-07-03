@@ -17,7 +17,7 @@ exports.createUser = async (req, res, next) => {
     const user = await User.create({
       username: req.body.username,
       phoneNumber: req.body.phoneNumber,
-      password: req.body.newPassword,
+      password: req.body.confirmPassword,
       role: req.body.role,
     });
     await user.save();
@@ -40,10 +40,12 @@ exports.login = async (req, res, next) => {
       throw new ErrorHandler(404, "Bu raqamli foydalanuvchi mavjud emas.");
     }
 
+    console.log(user);
+
     if (user.password !== req.body.password) {
       throw new ErrorHandler(404, "Parol xato!");
     }
-    const token = generateJwt(user.id, user.role);
+    const token = await generateJwt(user.id, user.role);
     delete user.password;
     user.token = token;
 

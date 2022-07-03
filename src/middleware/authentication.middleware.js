@@ -7,7 +7,7 @@ exports.authenticate = async (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
-    throw new ErrorHandler(403, "Unauthorized");
+    throw new ErrorHandler(403, "Sizda token mavjud emas!");
   }
 
   try {

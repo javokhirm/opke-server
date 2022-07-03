@@ -9,7 +9,11 @@ exports.registrationSchema = [
     .withMessage("Ism eng kamida 4 ta harfdan iborat bo'lishi kerak.")
     .isLength({ max: 12 })
     .withMessage("Ism 12 ta harfdan ortiq bo'lmasligi kerak."),
-  body("phoneNumber").exists().withMessage("Telefon raqamni kiritish shart."),
+  body("phoneNumber")
+    .exists()
+    .withMessage("Telefon raqamni kiritish shart.")
+    .isLength({ min: 8 })
+    .withMessage("Telefon raqam eng kamida 8 ta sondan iborat bo'lishi kerak."),
   body("password")
     .exists()
     .isLength({ min: 8 })

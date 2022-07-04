@@ -11,7 +11,7 @@ const { permit } = require("../middleware/authorization.middleware");
 router.use(authenticate);
 
 router.get("/", permit("admin"), getAllOrders);
-router.post("/", permit("user"), createOrder);
+router.post("/", createOrder);
 router.put("/", updateOrder);
 router.delete("/", permit("admin"), deleteOrder);
 

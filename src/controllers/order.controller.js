@@ -12,6 +12,18 @@ exports.getAllOrders = async (req, res, next) => {
   }
 };
 
+exports.getMyOrders = async (req, res, next) => {
+  try {
+    const myOrders = await Order.find({ user: req.userId })
+      .populate("user")
+      .populate("products.product");
+
+    return res.status(200).json(myOrders);
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.createOrder = async (req, res, next) => {
   try {
     const order = await Order.create({ ...req.body });

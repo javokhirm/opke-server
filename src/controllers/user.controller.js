@@ -9,6 +9,15 @@ exports.getAllUsers = async (req, res, next) => {
   }
 };
 
+exports.getUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.userId);
+    return res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.deleteUser = async (req, res, next) => {
   const userId = req.query.id;
   try {

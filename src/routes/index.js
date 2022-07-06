@@ -7,6 +7,6 @@ const user = require("./user.route");
 router.use("/auth", auth);
 router.use("/products", product);
 router.use("/orders", order);
-router.use("/user", user);
+router.use("/users", user);
 
 module.exports = router;

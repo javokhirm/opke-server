@@ -43,7 +43,7 @@ exports.login = async (req, res, next) => {
     if (user.password !== req.body.password) {
       throw new ErrorHandler(404, "Parol xato!");
     }
-    const token = await generateJwt(user.id, user.role);
+    const token = await generateJwt(user._id, user.role);
     delete user.password;
     user.token = token;
 

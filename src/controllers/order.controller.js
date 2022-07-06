@@ -14,9 +14,9 @@ exports.getAllOrders = async (req, res, next) => {
 
 exports.getMyOrders = async (req, res, next) => {
   try {
-    const myOrders = await Order.find({ user: req.userId })
-      .populate("user")
-      .populate("products.product");
+    const myOrders = await Order.find({ user: req.userId }).populate(
+      "products.product"
+    );
 
     return res.status(200).json(myOrders);
   } catch (error) {
@@ -37,7 +37,7 @@ exports.updateOrder = async (req, res, next) => {};
 
 exports.deleteOrder = async (req, res, next) => {
   try {
-    await Order.deleteOne({ _id: req.query.id });
+    await Order.deleteOne({ _id: req.params.id });
     return res.status(200).json({ message: "Buyurtma o'chirildi!" });
   } catch (error) {
     next(error);

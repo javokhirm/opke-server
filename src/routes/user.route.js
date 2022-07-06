@@ -11,6 +11,6 @@ router.use(authenticate);
 
 router.get("/", permit("admin"), getAllUsers);
 router.get("/myprofile", getUser);
-router.delete("/", permit("admin"), deleteUser);
+router.delete("/:id", permit("admin"), deleteUser);
 
 module.exports = router;

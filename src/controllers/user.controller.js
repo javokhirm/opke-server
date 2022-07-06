@@ -19,7 +19,7 @@ exports.getUser = async (req, res, next) => {
 };
 
 exports.deleteUser = async (req, res, next) => {
-  const userId = req.query.id;
+  const userId = req.params.id;
   try {
     await User.deleteOne({ _id: userId });
     return res.status(200).json({ message: "Foydalanuvchi o'chirildi!" });

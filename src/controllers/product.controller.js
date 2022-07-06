@@ -37,7 +37,7 @@ exports.getProduct = async (req, res) => {
 exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(
-      { _id: req.query.id },
+      { _id: req.params.id },
       { ...req.body }
     );
     return res
@@ -50,7 +50,7 @@ exports.updateProduct = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
   try {
-    await Product.deleteOne({ _id: req.query.id });
+    await Product.deleteOne({ _id: req.params.id });
     return res.status(200).json({ message: "Mahsulot o'chirildi!" });
   } catch (error) {
     next(error);

@@ -12,7 +12,7 @@ router.use(authenticate);
 
 router.get("/", permit("admin"), getAllOrders);
 router.post("/", createOrder);
-router.put("/", updateOrder);
+router.put("/", permit("admin"), updateOrder);
 router.delete("/", permit("admin"), deleteOrder);
 
 module.exports = router;

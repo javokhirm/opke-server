@@ -1,6 +1,6 @@
 const Product = require("../models/Product");
 
-exports.getAllProducts = async (req, res) => {
+exports.getAllProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
     return res.status(200).json(products);
@@ -9,7 +9,7 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
-exports.createProduct = async (req, res) => {
+exports.createProduct = async (req, res, next) => {
   try {
     const product = await Product.create({
       name: req.body.name,
@@ -25,7 +25,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-exports.getProduct = async (req, res) => {
+exports.getProduct = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);
     return res.status(200).json(product);
@@ -34,7 +34,7 @@ exports.getProduct = async (req, res) => {
   }
 };
 
-exports.updateProduct = async (req, res) => {
+exports.updateProduct = async (req, res, next) => {
   try {
     const product = await Product.findByIdAndUpdate(
       { _id: req.params.id },
@@ -48,7 +48,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-exports.deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res, next) => {
   try {
     await Product.deleteOne({ _id: req.params.id });
     return res.status(200).json({ message: "Mahsulot o'chirildi!" });
